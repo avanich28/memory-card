@@ -1,0 +1,17 @@
+.github {
+  font-size: small;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.github a {
+  font-size: 40px;
+  color: var(--color-light);
+}
+
+.github a:hover {
+  color: var(--color-red);
+  transition: all 0.2s ease-in-out;
+}

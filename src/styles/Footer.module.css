@@ -1,0 +1,23 @@
+.footer,
+.footer button {
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  font-family: Inter, system-ui;
+  width: 90vw;
+  justify-content: space-between;
+}
+
+.footer button {
+  border: none;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color: var(--color-dark);
+  background-color: var(--color-light);
+  padding: 10px;
+  border-radius: 200px;
+  justify-content: center;
+}
