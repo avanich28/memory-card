@@ -11,13 +11,19 @@ function Setting({ setting, onSetting }) {
         <Button
           icon={setting.music ? "volume-high" : "volume-xmark"}
           onClick={() => onSetting({ ...setting, music: !setting.music })}
+          sound={setting.sound}
         />
         <Button
           icon={setting.sound ? "music" : "ban"}
           onClick={() => onSetting({ ...setting, sound: !setting.sound })}
+          sound={setting.sound}
         />
       </div>
-      <Button icon="gear" onClick={() => setIsActive(!isActive)} />
+      <Button
+        icon="gear"
+        onClick={() => setIsActive(!isActive)}
+        sound={setting.sound}
+      />
     </div>
   );
 }

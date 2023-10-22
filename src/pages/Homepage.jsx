@@ -8,15 +8,21 @@ import Levels from "../components/Levels";
 function Homepage({ setting, onSetting }) {
   const [start, setStart] = useState(false);
 
+  function handleStart() {
+    setStart(true);
+  }
+
   return (
     <main className={styles.homepage}>
       <Logo />
       {!start && (
         <div>
-          <Button onClick={() => setStart(true)}>Play game</Button>
+          <Button onClick={handleStart} sound={setting.sound}>
+            Play game
+          </Button>
         </div>
       )}
-      {start && <Levels />}
+      {start && <Levels setting={setting} />}
       <Footer setting={setting} onSetting={onSetting} />
     </main>
   );

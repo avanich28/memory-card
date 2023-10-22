@@ -6,7 +6,7 @@ import GithubLink from "./GithubLink";
 function Footer({ setting, onSetting }) {
   return (
     <footer className={styles.footer}>
-      <Guild />
+      <Guild setting={setting} />
       <GithubLink />
       <Setting setting={setting} onSetting={onSetting} />
     </footer>

@@ -1,11 +1,15 @@
 import Button from "./Button";
 
-function Levels() {
+function Levels({ setting }) {
+  const defaultProps = {
+    sound: setting.sound,
+  };
+
   return (
     <div>
-      <Button>Easy</Button>
-      <Button>Medium</Button>
-      <Button>Hard</Button>
+      <Button {...defaultProps}>Easy</Button>
+      <Button {...defaultProps}>Medium</Button>
+      <Button {...defaultProps}>Hard</Button>
     </div>
   );
 }

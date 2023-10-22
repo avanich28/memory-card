@@ -3,7 +3,7 @@ import styles from "../styles/Guild.module.css";
 import Button from "./Button";
 import ash from "../assets/ash.gif";
 
-function Guild() {
+function Guild({ setting }) {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -19,6 +19,7 @@ function Guild() {
       <Button
         icon={isActive ? "xmark" : "question"}
         onClick={() => setIsActive((is) => !is)}
+        sound={setting.sound}
       />
     </div>
   );
