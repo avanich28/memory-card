@@ -13,13 +13,21 @@
 }
 
 .homepage header,
-.homepage > button {
+.homepage > div {
   margin-top: 10vh;
 }
 
-.homepage > button {
+.homepage > div {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.homepage > div > button {
   opacity: 0;
-  animation: blink-btn 1.5s infinite 2.5s;
+  animation: blink-btn 2s infinite;
+  font-size: 25px;
 }
 
 .homepage img {

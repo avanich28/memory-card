@@ -1,0 +1,61 @@
+.active {
+  position: relative;
+}
+
+.active img {
+  position: relative;
+  left: -40px;
+  width: 200px;
+  height: auto;
+  animation: none;
+}
+
+.display {
+  position: absolute;
+  bottom: -25px;
+  left: 60px;
+  width: 120px;
+  animation: showUp 0.3s forwards;
+  font-family: "Pokemon GB", sans-serif;
+}
+
+.display > div:nth-of-type(1) {
+  position: relative;
+  left: 70px;
+  font-size: 15px;
+  line-height: 1.5;
+  width: 260px;
+  padding: 10px 20px;
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+.display div:nth-of-type(1):after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 10%;
+  border: 25px solid transparent;
+  border-top-color: var(--color-light);
+  border-bottom: 0;
+  border-left: 0;
+}
+
+.display > div:nth-of-type(2) {
+  width: 120px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.hide {
+  display: none;
+}
+
+@keyframes showUp {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

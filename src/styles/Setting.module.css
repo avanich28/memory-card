@@ -1,5 +1,5 @@
 button {
-  transition: all 0.4s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 
 .active {
@@ -7,11 +7,11 @@ button {
 }
 
 .active > button {
-  transform: rotate(30deg);
+  transform: rotate(20deg);
 }
 
 .notActive > button {
-  transform: rotate(-30deg);
+  transform: rotate(-20deg);
 }
 
 .display {

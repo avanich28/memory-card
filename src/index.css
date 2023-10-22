@@ -110,7 +110,7 @@ section {
 body {
   line-height: 1;
   box-sizing: border-box;
-  font-family: "Press Start 2P", Inter, system-ui, "Segoe UI", Roboto, Avenir,
+  font-family: "Pokemon GB", Inter, system-ui, "Segoe UI", Roboto, Avenir,
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
 }
@@ -156,4 +156,9 @@ table {
 footer {
   margin-top: auto;
   padding-bottom: 5vh;
+}
+
+@font-face {
+  font-family: "Pokemon GB";
+  src: url("./assets/PokemonGb-RAeo.ttf") format("truetype");
 }
