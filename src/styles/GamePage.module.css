@@ -1,0 +1,23 @@
+.gamePage {
+  color: var(--color-light);
+  font-family: "Silkscreen";
+  font-size: 25px;
+}
+
+.gamePage,
+.gamePage main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gamePage main {
+  gap: 15px;
+}
+
+.gamePage img {
+  margin-top: 3vh;
+  height: 100%;
+  width: 250px;
+}

@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Button from "../components/Button";
 import Levels from "../components/Levels";
 
-function Homepage({ setting, onSetting }) {
+function Homepage({ setting, onSetting, dispatch }) {
   const [start, setStart] = useState(false);
 
   function handleStart() {
@@ -22,7 +22,7 @@ function Homepage({ setting, onSetting }) {
           </Button>
         </div>
       )}
-      {start && <Levels setting={setting} />}
+      {start && <Levels setting={setting} dispatch={dispatch} />}
       <Footer setting={setting} onSetting={onSetting} />
     </main>
   );
