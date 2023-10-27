@@ -1,9 +1,8 @@
 .loading {
-  height: 100%;
+  margin-top: 28vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 .loading > div > img {

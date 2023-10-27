@@ -7,7 +7,6 @@ import Levels from "../components/Levels";
 
 function Homepage({ setting, onSetting, dispatch, status }) {
   const [start, setStart] = useState(false);
-  console.log(status);
 
   function handleStart() {
     setStart(true);

@@ -21,14 +21,11 @@ function Card({ card, dispatch, sound, flipcard, onFlipcard }) {
     >
       <li
         className={styles.card}
-        onClick={() => {
-          handleCardFlip();
-          onFlipcard(2);
-        }}
+        onClick={() => onFlipcard(2)}
         onAnimationEnd={() => onFlipcard(1)}
         flipcard={flipcard}
       >
-        <div className={styles.cardFront}>
+        <div className={styles.cardFront} onClick={handleCardFlip}>
           <div>
             <img src={card.img} alt={card.name} />
           </div>

@@ -2,11 +2,11 @@
   color: var(--color-light);
   font-family: "Silkscreen";
   font-size: 25px;
+  min-height: 100vh;
 }
 
 .gamePage,
 .gamePage main {
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

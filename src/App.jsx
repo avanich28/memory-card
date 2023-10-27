@@ -44,8 +44,6 @@ function reducer(state, action) {
           return [...acc, cur];
         }, []);
 
-      // const getCardArr = idArr.map((id) => usePokemon(id));
-
       return {
         ...state,
         status: "loading",
@@ -82,7 +80,7 @@ function App() {
     music: false,
     sound: true,
   });
-  usePokemon(idArr, dispatch); // get cards
+  usePokemon(idArr, dispatch); // cards
 
   const defaultProps = {
     setting,
