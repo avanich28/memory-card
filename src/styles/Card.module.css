@@ -2,7 +2,7 @@
   position: relative;
   height: 230px;
   width: 200px;
-  perspective: 1000px;
+  perspective: 2000px;
   cursor: pointer;
 }
 
@@ -118,9 +118,9 @@
 @keyframes displayCard {
   0%,
   50% {
-    opacity: 0;
+    visibility: hidden;
   }
   100% {
-    opacity: 1;
+    visibility: visible;
   }
 }

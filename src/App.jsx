@@ -13,6 +13,7 @@ const initialState = {
   status: "loading",
   idArr: [],
   cards: [],
+  answer: [],
   score: 0,
   maxScore: null,
   highscore: 0,
@@ -27,8 +28,8 @@ function reducer(state, action) {
     case "levelReceived":
       let scoreRange;
       if (action.payload === "easy") scoreRange = 5;
-      if (action.payload === "medium") scoreRange = 10;
-      if (action.payload === "hard") scoreRange = 15;
+      if (action.payload === "medium") scoreRange = 8;
+      if (action.payload === "hard") scoreRange = 12;
 
       function randomNumber() {
         return Math.floor(Math.random() * MAX_POKEMON_DATA);
@@ -52,17 +53,33 @@ function reducer(state, action) {
       };
     case "dataReceived":
       return { ...state, cards: action.payload, status: "ready" };
-    case "resultReceived":
+    case "checkAnswer":
+      if (state.answer.includes(action.payload))
+        return {
+          ...state,
+          result: "lose",
+          status: "finished",
+          highscore:
+            state.highscore > state.score ? state.highscore : state.score,
+        };
+      if (state.answer.length === state.maxScore - 1)
+        return {
+          ...state,
+          score: state.score++,
+          result: "win",
+          status: "finished",
+          highscore:
+            state.highscore > state.score ? state.highscore : state.score++,
+        };
       return {
         ...state,
-        result: action.payload,
-        status: "finished",
+        answer: [...state.answer, action.payload],
+        score: state.score++,
       };
     case "restart":
       return {
         ...initialState,
         highscore: state.highscore,
-        allCards: state.allCards,
       };
     case "failedFetching":
       return { ...state, status: "error", errorMsg: action.payload };

@@ -5,7 +5,7 @@ import pokemonPlayingCard from "../assets/pokemonPlayingCard.jpeg";
 import cardFlipSound from "../assets/card-slide-sound-effect.mp3";
 
 function Card({ card, dispatch, sound, flipcard, onFlipcard, onSwitchCard }) {
-  const [flipSound] = useSound(cardFlipSound);
+  const [flipSound] = useSound(cardFlipSound, { volume: 0.3 });
 
   function handleCardFlip() {
     if (sound) flipSound();
@@ -29,6 +29,7 @@ function Card({ card, dispatch, sound, flipcard, onFlipcard, onSwitchCard }) {
           onClick={() => {
             handleCardFlip();
             onSwitchCard();
+            dispatch({ type: "checkAnswer", payload: card.name });
           }}
         >
           <div>
