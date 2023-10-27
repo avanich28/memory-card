@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import styles from "../styles/Levels.module.css";
 import Button from "./Button";
 
 function Levels({ setting, dispatch }) {
@@ -7,7 +8,7 @@ function Levels({ setting, dispatch }) {
   };
 
   return (
-    <div>
+    <div className={styles.levels}>
       <NavLink to="game">
         <Button
           {...defaultProps}

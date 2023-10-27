@@ -4,17 +4,17 @@ import Tilt from "react-parallax-tilt";
 import pokemonPlayingCard from "../assets/pokemonPlayingCard.jpeg";
 import cardFlipSound from "../assets/card-slide-sound-effect.mp3";
 
-function Card({ card, dispatch, flipCard, onFlipCard }) {
+function Card({ card, dispatch, sound, flipcard, onFlipcard }) {
   const [flipSound] = useSound(cardFlipSound);
 
   function handleCardFlip() {
-    flipSound();
+    if (sound) flipSound();
   }
 
   return (
     <Tilt
       glareEnable={true}
-      glareMaxOpacity={0.7}
+      glareMaxOpacity={0.5}
       glareColor="#ffffff"
       glarePosition="all"
       glareBorderRadius="12px"
@@ -23,10 +23,10 @@ function Card({ card, dispatch, flipCard, onFlipCard }) {
         className={styles.card}
         onClick={() => {
           handleCardFlip();
-          onFlipCard(2);
+          onFlipcard(2);
         }}
-        onAnimationEnd={() => onFlipCard(1)}
-        flipCard={flipCard}
+        onAnimationEnd={() => onFlipcard(1)}
+        flipcard={flipcard}
       >
         <div className={styles.cardFront}>
           <div>

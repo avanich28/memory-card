@@ -2,8 +2,8 @@ import { useState } from "react";
 import styles from "../styles/CardList.module.css";
 import Card from "./Card";
 
-function CardList({ cards, dispatch }) {
-  const [flipCard, setFlipCard] = useState(0);
+function CardList({ cards, dispatch, sound }) {
+  const [flipcard, setFlipcard] = useState(0);
 
   return (
     <ul className={styles.cardList}>
@@ -12,8 +12,9 @@ function CardList({ cards, dispatch }) {
           key={card.name}
           card={card}
           dispatch={dispatch}
-          flipCard={flipCard}
-          onFlipCard={setFlipCard}
+          sound={sound}
+          flipcard={flipcard}
+          onFlipcard={setFlipcard}
         />
       ))}
     </ul>

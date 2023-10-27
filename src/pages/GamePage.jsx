@@ -4,6 +4,7 @@ import logo from "../assets/logo.svg";
 import Footer from "../components/Footer";
 import Scores from "../components/Scores";
 import CardList from "../components/CardList";
+import Loading from "../components/Loading";
 
 function GamePage({
   setting,
@@ -19,14 +20,19 @@ function GamePage({
 }) {
   return (
     <main className={styles.gamePage}>
-      <Link to="/">
-        <img src={logo} alt="Pokemon Logo" />
-      </Link>
-      <main>
-        <Scores score={score} maxScore={maxScore} highscore={highscore} />
-        <CardList cards={cards} dispatch={dispatch} />
-      </main>
-      <Footer setting={setting} onSetting={onSetting} />
+      {status === "loading" && <Loading />}
+      {status === "ready" && (
+        <>
+          <Link to="/">
+            <img src={logo} alt="Pokemon Logo" />
+          </Link>
+          <main>
+            <Scores score={score} maxScore={maxScore} highscore={highscore} />
+            <CardList cards={cards} dispatch={dispatch} sound={setting.sound} />
+          </main>
+          <Footer setting={setting} onSetting={onSetting} />
+        </>
+      )}
     </main>
   );
 }

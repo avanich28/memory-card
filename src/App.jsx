@@ -1,17 +1,18 @@
-import { useEffect, useState, useReducer } from "react";
+import { useState, useReducer } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactHowler from "react-howler";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import gameMusic from "./assets/professor.mp3";
 import * as icons from "./icon";
+import usePokemon from "./hooks/usePokemon.js";
 import Homepage from "./pages/homepage";
 import GamePage from "./pages/GamePage";
 library.add(...Object.values(icons));
 
 const initialState = {
-  status: "ready",
+  status: "loading",
+  idArr: [],
   cards: [],
-  allCards: [],
   score: 0,
   maxScore: null,
   highscore: 0,
@@ -19,12 +20,10 @@ const initialState = {
   errorMsg: "",
 };
 
-const MAX_POKEMON_DATA = 150;
+const MAX_POKEMON_DATA = 800;
 
 function reducer(state, action) {
   switch (action.type) {
-    case "dataReceived":
-      return { ...state, allCards: action.payload, status: "ready" };
     case "levelReceived":
       let scoreRange;
       if (action.payload === "easy") scoreRange = 5;
@@ -35,7 +34,7 @@ function reducer(state, action) {
         return Math.floor(Math.random() * MAX_POKEMON_DATA);
       }
 
-      const getNumArr = Array(scoreRange)
+      const idArr = Array(scoreRange)
         .fill(0)
         .reduce((acc, cur) => {
           cur = randomNumber();
@@ -45,13 +44,21 @@ function reducer(state, action) {
           return [...acc, cur];
         }, []);
 
-      const getCardArr = getNumArr.map((num) => state.allCards[num]);
+      // const getCardArr = idArr.map((id) => usePokemon(id));
 
       return {
         ...state,
         status: "loading",
         maxScore: scoreRange,
-        cards: getCardArr,
+        idArr,
+      };
+    case "dataReceived":
+      return { ...state, cards: action.payload, status: "ready" };
+    case "resultReceived":
+      return {
+        ...state,
+        result: action.payload,
+        status: "finished",
       };
     case "restart":
       return {
@@ -68,57 +75,21 @@ function reducer(state, action) {
 
 function App() {
   const [
-    { status, cards, score, maxScore, highscore, result, errorMsg },
+    { status, cards, idArr, score, maxScore, highscore, result, errorMsg },
     dispatch,
   ] = useReducer(reducer, initialState);
   const [setting, setSetting] = useState({
-    music: true,
+    music: false,
     sound: true,
   });
+  usePokemon(idArr, dispatch); // get cards
 
   const defaultProps = {
     setting,
     onSetting: setSetting,
     dispatch,
+    status,
   };
-
-  useEffect(function () {
-    async function fetchPokemon() {
-      try {
-        dispatch({ type: "failedFetching", payload: "" });
-
-        const res = await fetch(
-          `https://pokeapi.co/api/v2/pokemon?limit=${MAX_POKEMON_DATA + 1}`
-        );
-        if (!res.ok)
-          throw new Error(
-            "Something went wrong with fetching all Pokemon data"
-          );
-
-        const data = await res.json();
-
-        async function fetchDataPokemon(name, url) {
-          const res = await fetch(url);
-          if (!res.ok) throw new Error("Pokemon data not found");
-
-          const data = await res.json();
-          return { name, img: data.sprites.front_default };
-        }
-
-        const dataPokemon = await Promise.all(
-          data.results.map((pokemon) =>
-            fetchDataPokemon(pokemon.name, pokemon.url)
-          )
-        );
-
-        dispatch({ type: "dataReceived", payload: dataPokemon });
-      } catch (err) {
-        dispatch({ type: "failedFetching", payload: err });
-        console.error(err);
-      }
-    }
-    fetchPokemon();
-  }, []);
 
   return (
     <div className="app">
