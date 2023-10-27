@@ -4,7 +4,7 @@ import Tilt from "react-parallax-tilt";
 import pokemonPlayingCard from "../assets/pokemonPlayingCard.jpeg";
 import cardFlipSound from "../assets/card-slide-sound-effect.mp3";
 
-function Card({ card, dispatch, sound, flipcard, onFlipcard }) {
+function Card({ card, dispatch, sound, flipcard, onFlipcard, onSwitchCard }) {
   const [flipSound] = useSound(cardFlipSound);
 
   function handleCardFlip() {
@@ -21,11 +21,16 @@ function Card({ card, dispatch, sound, flipcard, onFlipcard }) {
     >
       <li
         className={styles.card}
-        onClick={() => onFlipcard(2)}
         onAnimationEnd={() => onFlipcard(1)}
         flipcard={flipcard}
       >
-        <div className={styles.cardFront} onClick={handleCardFlip}>
+        <div
+          className={styles.cardFront}
+          onClick={() => {
+            handleCardFlip();
+            onSwitchCard();
+          }}
+        >
           <div>
             <img src={card.img} alt={card.name} />
           </div>

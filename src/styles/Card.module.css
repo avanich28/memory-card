@@ -9,11 +9,9 @@
 .card img {
   height: auto;
 }
-
 .cardFront img {
   width: 150px;
 }
-
 .cardBack img {
   position: relative;
   top: -20px;
@@ -37,16 +35,13 @@
   overflow: hidden;
 }
 
-.cardFront {
-  background-color: rgba(245, 245, 245, 0.687);
-  color: var(--color-dark);
-}
-
 .cardBack {
   animation: flippingFront 2s forwards;
 }
 
 .cardFront {
+  background-color: rgba(245, 245, 245, 0.687);
+  color: var(--color-dark);
   transform: rotateY(180deg);
   animation: flippingBack 2s forwards;
 }
@@ -63,12 +58,15 @@
   transform: rotateY(180deg);
 }
 
+.card[flipCard="2"] .cardFront {
+  animation: flippingFrontClick 1.8s forwards;
+}
 .card[flipCard="2"] .cardBack {
-  animation: flippingBackClick 2s forwards;
+  animation: flippingBackClick 1.8s forwards;
 }
 
-.card[flipCard="2"] .cardFront {
-  animation: flippingFrontClick 2s forwards;
+.card[flipCard="2"] .cardFront > * {
+  animation: displayCard 2s forwards;
 }
 
 @keyframes flippingFront {
@@ -114,5 +112,15 @@
   }
   100% {
     transform: rotateY(-180deg);
+  }
+}
+
+@keyframes displayCard {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

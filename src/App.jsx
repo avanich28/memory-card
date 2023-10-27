@@ -86,7 +86,6 @@ function App() {
     setting,
     onSetting: setSetting,
     dispatch,
-    status,
   };
 
   return (
