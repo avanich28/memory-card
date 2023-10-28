@@ -138,12 +138,13 @@ table {
   --color-light: whitesmoke;
   --color-dark: black;
   --color-red: rgb(220, 47, 20);
+  --color-yellow: rgb(242, 194, 73);
+  --color-bg-modal: rgba(0, 0, 0, 0.39);
 }
 
 .app {
-  min-height: 715px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.218)),
-    url("./assets/background.jpg");
+  min-height: 460px;
+  background-image: url("./assets/background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -155,7 +156,7 @@ button {
 
 footer {
   margin-top: auto;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 5vh;
 }
 

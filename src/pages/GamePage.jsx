@@ -33,12 +33,17 @@ function GamePage({
           </Link>
           <main>
             <Scores score={score} maxScore={maxScore} highscore={highscore} />
-            <CardList cards={cards} dispatch={dispatch} sound={setting.sound} />
+            <CardList
+              cards={cards}
+              dispatch={dispatch}
+              sound={setting.sound}
+              status={status}
+            />
           </main>
           <Footer setting={setting} onSetting={onSetting} />
         </>
       )}
-      {status === "finished" && <GameResult result={result} />}
+      {status === "finished" && <GameResult result={result} score={score} />}
     </main>
   );
 }
