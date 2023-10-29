@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactHowler from "react-howler";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -11,6 +11,7 @@ library.add(...Object.values(icons));
 
 const initialState = {
   status: "loading",
+  level: null,
   idArr: [],
   cards: [],
   answer: [],
@@ -48,6 +49,7 @@ function reducer(state, action) {
       return {
         ...state,
         status: "loading",
+        level: action.payload,
         maxScore: scoreRange,
         idArr,
       };
@@ -89,7 +91,17 @@ function reducer(state, action) {
 
 function App() {
   const [
-    { status, cards, idArr, score, maxScore, highscore, result, errorMsg },
+    {
+      status,
+      level,
+      cards,
+      idArr,
+      score,
+      maxScore,
+      highscore,
+      result,
+      errorMsg,
+    },
     dispatch,
   ] = useReducer(reducer, initialState);
   const [setting, setSetting] = useState({
@@ -116,6 +128,7 @@ function App() {
               <GamePage
                 {...defaultProps}
                 status={status}
+                level={level}
                 cards={cards}
                 score={score}
                 maxScore={maxScore}

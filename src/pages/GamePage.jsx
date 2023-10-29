@@ -12,6 +12,7 @@ function GamePage({
   onSetting,
   dispatch,
   status,
+  level,
   cards,
   score,
   maxScore,
@@ -43,7 +44,14 @@ function GamePage({
           <Footer setting={setting} onSetting={onSetting} />
         </>
       )}
-      {status === "finished" && <GameResult result={result} score={score} />}
+      {status === "finished" && (
+        <GameResult
+          result={result}
+          score={score}
+          dispatch={dispatch}
+          level={level}
+        />
+      )}
     </main>
   );
 }

@@ -2,8 +2,9 @@ import styles from "../styles/GameResult.module.css";
 import pikachuDance from "../assets/pikachu-dance.gif";
 import pikachuDizzy from "../assets/pikachu-dizzy.webp";
 import Button from "./Button";
+import { Link } from "react-router-dom";
 
-function GameResult({ result, score }) {
+function GameResult({ result, score, dispatch, level }) {
   return (
     <div className={styles.gameResult}>
       <div>
@@ -27,8 +28,17 @@ function GameResult({ result, score }) {
         </div>
         <p>Your final score is {score}.</p>
         <div>
-          <Button>Play Again</Button>
-          <Button>Quit</Button>
+          <Button
+            onClick={() => {
+              dispatch({ type: "restart" });
+              dispatch({ type: "levelReceived", payload: level });
+            }}
+          >
+            {result === "win" ? "Play" : "Try"} Again
+          </Button>
+          <Link to="/">
+            <Button onClick={() => dispatch({ type: "restart" })}>Quit</Button>
+          </Link>
         </div>
       </div>
     </div>
