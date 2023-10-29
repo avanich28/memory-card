@@ -23,9 +23,9 @@
 .gameResult > div {
   background-color: var(--color-light);
   color: var(--color-dark);
-  padding: 20px 80px;
-  border: 10px double var(--color-dark);
-  gap: 18px;
+  padding: 35px 80px 20px 80px;
+  border: 6px double var(--color-dark);
+  gap: 20px;
 }
 
 .gameResult > div > div:nth-of-type(2) {
@@ -37,11 +37,25 @@
   font-weight: bold;
 }
 
+.gameResult > div > div:nth-of-type(1) {
+  overflow: hidden;
+  height: 180px;
+  width: 250px;
+}
+
 .gameResult img {
   position: relative;
-  top: -10px;
   height: auto;
-  width: 120px;
+}
+
+.gameResult .winImg {
+  top: -25px;
+  width: 250px;
+}
+
+.gameResult .loseImg {
+  top: -22px;
+  width: 350px;
 }
 
 .gameResult p {
