@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../styles/GamePage.module.css";
 import logo from "../assets/logo.svg";
 import Footer from "../components/Footer";
@@ -7,6 +7,9 @@ import CardList from "../components/CardList";
 import Loading from "../components/Loading";
 import GameResult from "../components/GameResult";
 import Error from "../components/Error";
+import { useEffect } from "react";
+
+const SEC = 10;
 
 function GamePage({
   setting,
@@ -21,6 +24,22 @@ function GamePage({
   result,
   errorMsg,
 }) {
+  const navigate = useNavigate();
+
+  useEffect(
+    function () {
+      const timer = setTimeout(() => {
+        if (status === "loading") {
+          dispatch({ type: "restart" });
+          navigate("/");
+        }
+      }, SEC * 1000);
+
+      return () => clearTimeout(timer);
+    },
+    [status, navigate, dispatch]
+  );
+
   return (
     <main className={styles.gamePage}>
       {status === "loading" && <Loading />}

@@ -1,4 +1,4 @@
-import { useState, useReducer, useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactHowler from "react-howler";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -7,7 +7,12 @@ import * as icons from "./icon";
 import usePokemon from "./hooks/usePokemon.js";
 import Homepage from "./pages/homepage";
 import GamePage from "./pages/GamePage";
+import useLocaleStorageState from "./hooks/useLocaleStorageState";
 library.add(...Object.values(icons));
+
+// arrow animation
+// keypress in the game result modal
+// readme
 
 const initialState = {
   status: "loading",
@@ -22,10 +27,17 @@ const initialState = {
   errorMsg: "",
 };
 
+const initialSetting = {
+  music: true,
+  sound: true,
+};
+
 const MAX_POKEMON_DATA = 800;
 
 function reducer(state, action) {
   switch (action.type) {
+    case "highscoreReceived":
+      return { ...state, highscore: action.payload };
     case "levelReceived":
       let scoreRange;
       if (action.payload === "easy") scoreRange = 5;
@@ -57,6 +69,7 @@ function reducer(state, action) {
       return { ...state, cards: action.payload, status: "ready" };
     case "checkAnswer":
       const getHighScore = state.highscore > state.score;
+
       if (state.answer.includes(action.payload))
         return {
           ...state,
@@ -64,6 +77,7 @@ function reducer(state, action) {
           status: "finished",
           highscore: getHighScore ? state.highscore : state.score,
         };
+
       if (state.answer.length === state.maxScore - 1)
         return {
           ...state,
@@ -72,6 +86,7 @@ function reducer(state, action) {
           status: "finished",
           highscore: getHighScore ? state.highscore : state.score++,
         };
+
       return {
         ...state,
         answer: [...state.answer, action.payload],
@@ -104,11 +119,32 @@ function App() {
     },
     dispatch,
   ] = useReducer(reducer, initialState);
-  const [setting, setSetting] = useState({
-    music: false,
-    sound: true,
-  });
+  const [setting, setSetting] = useLocaleStorageState(
+    initialSetting,
+    "setting"
+  );
   usePokemon(idArr, dispatch); // cards
+
+  useEffect(
+    function () {
+      const storedHighscore = localStorage.getItem("highscore");
+
+      dispatch({
+        type: "highscoreReceived",
+        payload: JSON.parse(storedHighscore),
+      });
+    },
+    [dispatch]
+  );
+
+  useEffect(
+    function () {
+      if (highscore === 0) return;
+
+      localStorage.setItem("highscore", JSON.stringify(highscore));
+    },
+    [highscore]
+  );
 
   const defaultProps = {
     setting,
