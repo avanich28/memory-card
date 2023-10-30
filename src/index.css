@@ -139,6 +139,7 @@ table {
   --color-dark: black;
   --color-red: rgb(220, 47, 20);
   --color-bg-modal: rgba(0, 0, 0, 0.39);
+  --color-grey: rgb(214, 213, 213);
 }
 
 .app {

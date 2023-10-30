@@ -30,14 +30,14 @@ function Card({
       <li
         className={styles.card}
         onAnimationEnd={() => onFlipcard(1)}
-        flipcard={flipcard}
+        flipcard={status === "finished" ? 3 : flipcard}
       >
         <div
           className={styles.cardFront}
           onClick={() => {
             handleCardFlip();
-            onSwitchCard();
             dispatch({ type: "checkAnswer", payload: card.name });
+            onSwitchCard();
           }}
         >
           <div>

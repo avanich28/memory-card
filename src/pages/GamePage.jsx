@@ -6,6 +6,7 @@ import Scores from "../components/Scores";
 import CardList from "../components/CardList";
 import Loading from "../components/Loading";
 import GameResult from "../components/GameResult";
+import Error from "../components/Error";
 
 function GamePage({
   setting,
@@ -23,6 +24,7 @@ function GamePage({
   return (
     <main className={styles.gamePage}>
       {status === "loading" && <Loading />}
+      {status === "error" && <Error errorMsg={errorMsg} />}
       {(status === "ready" || status === "finished") && (
         <>
           <Link to="/">
@@ -50,6 +52,7 @@ function GamePage({
           score={score}
           dispatch={dispatch}
           level={level}
+          sound={setting.sound}
         />
       )}
     </main>

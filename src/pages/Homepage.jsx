@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import Button from "../components/Button";
 import Levels from "../components/Levels";
 
-function Homepage({ setting, onSetting, dispatch, status }) {
+function Homepage({ setting, onSetting, dispatch }) {
   const navigate = useNavigate();
   const [start, setStart] = useState(false);
 
