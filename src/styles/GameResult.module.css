@@ -59,13 +59,24 @@
 }
 
 .gameResult p {
-  font-size: 14px;
+  margin-top: 20px;
+  font-size: 15px;
 }
 
 .gameResult button {
+  position: relative;
   border: none;
   font-family: inherit;
   font-size: 16px;
   background-color: transparent;
   text-transform: uppercase;
+}
+
+.gameResult button:hover::before {
+  position: absolute;
+  top: -5px;
+  left: -20px;
+  content: url(../assets/small_arrow.svg);
+  width: 20px;
+  height: 20px;
 }

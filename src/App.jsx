@@ -10,8 +10,6 @@ import GamePage from "./pages/GamePage";
 import useLocaleStorageState from "./hooks/useLocaleStorageState";
 library.add(...Object.values(icons));
 
-// arrow animation
-// keypress in the game result modal
 // readme
 
 const initialState = {
