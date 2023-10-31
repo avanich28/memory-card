@@ -3,14 +3,13 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ReactHowler from "react-howler";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import gameMusic from "./assets/professor.mp3";
+import winMusic from "./assets/gotcha.mp3";
 import * as icons from "./icon";
 import usePokemon from "./hooks/usePokemon.js";
 import Homepage from "./pages/homepage";
 import GamePage from "./pages/GamePage";
 import useLocaleStorageState from "./hooks/useLocaleStorageState";
 library.add(...Object.values(icons));
-
-// readme
 
 const initialState = {
   status: "loading",
@@ -152,7 +151,11 @@ function App() {
 
   return (
     <div className="app">
-      <ReactHowler src={gameMusic} loop={true} playing={setting.music} />
+      <ReactHowler
+        src={result === "win" ? winMusic : gameMusic}
+        loop={true}
+        playing={setting.music}
+      />
       <BrowserRouter>
         <Routes>
           <Route index element={<Homepage {...defaultProps} />} />
