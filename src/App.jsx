@@ -1,5 +1,5 @@
 import { useEffect, useReducer } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import ReactHowler from "react-howler";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import gameMusic from "./assets/professor.mp3";
@@ -156,7 +156,7 @@ function App() {
         loop={true}
         playing={setting.music}
       />
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route index element={<Homepage {...defaultProps} />} />
           <Route
@@ -176,7 +176,7 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
