@@ -6,7 +6,7 @@ import gameMusic from "./assets/professor.mp3";
 import winMusic from "./assets/gotcha.mp3";
 import * as icons from "./icon";
 import usePokemon from "./hooks/usePokemon.js";
-import Homepage from "./pages/homepage";
+import Homepage from "./pages/Homepage";
 import GamePage from "./pages/GamePage";
 import useLocaleStorageState from "./hooks/useLocaleStorageState";
 library.add(...Object.values(icons));
