@@ -81,7 +81,7 @@ function reducer(state, action) {
           score: state.score++,
           result: "win",
           status: "finished",
-          highscore: getHighScore ? state.highscore : state.score++,
+          highscore: state.answer.length + 1,
         };
 
       return {
@@ -128,7 +128,10 @@ function App() {
 
       dispatch({
         type: "highscoreReceived",
-        payload: JSON.parse(storedHighscore),
+        payload:
+          JSON.parse(storedHighscore) === null
+            ? 0
+            : JSON.parse(storedHighscore),
       });
     },
     [dispatch]
