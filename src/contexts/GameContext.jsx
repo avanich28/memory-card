@@ -64,16 +64,16 @@ function reducer(state, action) {
       if (state.answer.length === state.maxScore - 1)
         return {
           ...state,
-          score: state.score++,
+          score: ++state.score,
           result: "win",
           status: "finished",
-          highscore: state.answer.length + 1,
+          highscore: state.maxScore,
         };
 
       return {
         ...state,
         answer: [...state.answer, action.payload],
-        score: state.score++,
+        score: ++state.score,
       };
     case "restart":
       return {

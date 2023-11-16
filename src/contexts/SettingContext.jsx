@@ -11,8 +11,6 @@ const initialState = {
 function SettingProvider({ children }) {
   const [setting, setSetting] = useLocaleStorageState(initialState, "setting");
 
-  console.log(setting);
-
   return (
     <SettingContext.Provider value={{ setting, onSetting: setSetting }}>
       {children}
