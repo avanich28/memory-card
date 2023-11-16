@@ -51,29 +51,27 @@ function reducer(state, action) {
     case "dataReceived":
       return { ...state, cards: action.payload, status: "ready" };
     case "checkAnswer":
-      const getHighScore = state.highscore > state.score;
+      const getAllAnswers = state.answer.length + 1 === state.maxScore;
 
       if (state.answer.includes(action.payload))
         return {
           ...state,
           result: "lose",
           status: "finished",
-          highscore: getHighScore ? state.highscore : state.score,
-        };
-
-      if (state.answer.length === state.maxScore - 1)
-        return {
-          ...state,
-          score: ++state.score,
-          result: "win",
-          status: "finished",
-          highscore: state.maxScore,
+          highscore:
+            state.score > state.highscore ? state.score : state.highscore,
         };
 
       return {
         ...state,
         answer: [...state.answer, action.payload],
-        score: ++state.score,
+        score: state.score + 1,
+        result: getAllAnswers ? "win" : state.result,
+        status: getAllAnswers ? "finished" : state.status,
+        highscore:
+          getAllAnswers && state.maxScore > state.highscore
+            ? state.maxScore
+            : state.highscore,
       };
     case "restart":
       return {
