@@ -3,12 +3,12 @@ import Guild from "./Guild";
 import Setting from "./Setting";
 import GithubLink from "./GithubLink";
 
-function Footer({ setting, onSetting }) {
+function Footer() {
   return (
     <footer className={styles.footer}>
-      <Guild setting={setting} />
+      <Guild />
       <GithubLink />
-      <Setting setting={setting} onSetting={onSetting} />
+      <Setting />
     </footer>
   );
 }

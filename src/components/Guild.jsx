@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styles from "../styles/Guild.module.css";
-import Button from "./Button";
 import ash from "../assets/ash.gif";
+import Button from "./Button";
 
-function Guild({ setting }) {
+function Guild() {
   const [isActive, setIsActive] = useState(false);
 
   return (
@@ -19,7 +19,6 @@ function Guild({ setting }) {
       <Button
         icon={isActive ? "xmark" : "question"}
         onClick={() => setIsActive((is) => !is)}
-        sound={setting.sound}
       />
     </div>
   );

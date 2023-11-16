@@ -1,14 +1,16 @@
 import useSound from "use-sound";
-import pokemonClick from "../assets/pokemon-click.mp3";
+import { useSetting } from "../contexts/SettingContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import pokemonClick from "../assets/pokemon-click.mp3";
 
-function Button({ icon = "", children, onClick, sound }) {
+function Button({ icon = "", children, onClick }) {
+  const { setting } = useSetting();
   const [clickSound] = useSound(pokemonClick);
   const hasIcon = icon.length > 0;
 
   function handleClick() {
     onClick();
-    if (sound) clickSound();
+    if (setting.sound) clickSound();
   }
 
   if (hasIcon)

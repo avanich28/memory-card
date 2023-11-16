@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "../styles/Homepage.module.css";
+import { useGame } from "../contexts/GameContext";
 import Logo from "../components/Logo";
 import Footer from "../components/Footer";
 import Button from "../components/Button";
 import Levels from "../components/Levels";
 
-function Homepage({ setting, onSetting, dispatch }) {
+function Homepage() {
   const navigate = useNavigate();
   const [start, setStart] = useState(false);
+  const { dispatch } = useGame();
 
   useEffect(
     function () {
@@ -29,13 +31,11 @@ function Homepage({ setting, onSetting, dispatch }) {
       <Logo />
       {!start && (
         <div>
-          <Button onClick={handleStart} sound={setting.sound}>
-            Play game
-          </Button>
+          <Button onClick={handleStart}>Play game</Button>
         </div>
       )}
-      {start && <Levels setting={setting} dispatch={dispatch} />}
-      <Footer setting={setting} onSetting={onSetting} />
+      {start && <Levels />}
+      <Footer />
     </main>
   );
 }

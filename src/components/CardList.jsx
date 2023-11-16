@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styles from "../styles/CardList.module.css";
+import { useGame } from "../contexts/GameContext";
 import Card from "./Card";
 
-function CardList({ cards, status, dispatch, sound }) {
+function CardList({ sound }) {
+  const { cards } = useGame();
   const [flipcard, setFlipcard] = useState(0);
   const [newCards, setNewCards] = useState(cards);
 
@@ -27,9 +29,6 @@ function CardList({ cards, status, dispatch, sound }) {
         <Card
           key={card.name}
           card={card}
-          status={status}
-          dispatch={dispatch}
-          sound={sound}
           flipcard={flipcard}
           onFlipcard={setFlipcard}
           onSwitchCard={handleSwitchCard}

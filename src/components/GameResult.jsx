@@ -1,10 +1,13 @@
+import { Link } from "react-router-dom";
 import styles from "../styles/GameResult.module.css";
+import { useGame } from "../contexts/GameContext";
 import pikachuDance from "../assets/pikachu-dance.gif";
 import pikachuDizzy from "../assets/pikachu-dizzy.webp";
 import Button from "./Button";
-import { Link } from "react-router-dom";
 
-function GameResult({ result, score, dispatch, level, sound }) {
+function GameResult() {
+  const { result, score, level, dispatch, getLevel } = useGame();
+
   return (
     <div className={styles.gameResult}>
       <div>
@@ -29,18 +32,15 @@ function GameResult({ result, score, dispatch, level, sound }) {
         <p>Your final score is {score}.</p>
         <div>
           <Button
-            sound={sound}
             onClick={() => {
               dispatch({ type: "restart" });
-              dispatch({ type: "levelReceived", payload: level });
+              getLevel(level);
             }}
           >
             {result === "win" ? "Play" : "Try"} Again
           </Button>
           <Link to="/">
-            <Button sound={sound} onClick={() => dispatch({ type: "restart" })}>
-              Quit
-            </Button>
+            <Button onClick={() => dispatch({ type: "restart" })}>Quit</Button>
           </Link>
         </div>
       </div>

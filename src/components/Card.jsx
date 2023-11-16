@@ -1,22 +1,18 @@
 import useSound from "use-sound";
-import styles from "../styles/Card.module.css";
 import Tilt from "react-parallax-tilt";
+import styles from "../styles/Card.module.css";
+import { useSetting } from "../contexts/SettingContext";
+import { useGame } from "../contexts/GameContext";
 import pokemonPlayingCard from "../assets/pokemonPlayingCard.jpeg";
 import cardFlipSound from "../assets/card-slide-sound-effect.mp3";
 
-function Card({
-  card,
-  status,
-  dispatch,
-  sound,
-  flipcard,
-  onFlipcard,
-  onSwitchCard,
-}) {
+function Card({ card, flipcard, onFlipcard, onSwitchCard }) {
+  const { setting } = useSetting();
+  const { status, dispatch } = useGame();
   const [flipSound] = useSound(cardFlipSound, { volume: 0.3 });
 
   function handleCardFlip() {
-    if (sound) flipSound();
+    if (setting.sound) flipSound();
   }
 
   return (

@@ -1,7 +1,10 @@
 import styles from "../styles/Scores.module.css";
+import { useGame } from "../contexts/GameContext";
 import star from "../assets/star.png";
 
-function Scores({ score, maxScore, highscore }) {
+function Scores() {
+  const { score, maxScore, highscore } = useGame();
+
   return (
     <>
       <div className={styles.scores}>
